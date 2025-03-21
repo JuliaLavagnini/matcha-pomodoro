@@ -1,4 +1,3 @@
-import React from "react";
 import React, { useState } from "react";
 import pomodoroImg from "./media/focusImg.png"; // Pomodoro Image
 import breakImg from "./media/breakImg.png"; //
@@ -11,6 +10,7 @@ import next from "./media/next-button.png"; //
 import previous from "./media/previous-button.png";
 
 const App: React.FC = () => {
+  const [currentImage, setCurrentImage] = useState(pomodoroImg);
   return (
     <div className="container-md ">
       <div className="row text-center">
