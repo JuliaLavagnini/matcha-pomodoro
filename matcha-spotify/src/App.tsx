@@ -1,4 +1,14 @@
 import React from "react";
+import React, { useState } from "react";
+import pomodoroImg from "./media/focusImg.png"; // Pomodoro Image
+import breakImg from "./media/breakImg.png"; //
+import drink from "./media/drink.png";
+import spotifyLogo from "./media/spotify-logo.png"; // Pomodoro Image
+import play from "./media/play-button.png"; //
+import pause from "./media/pause-button.png";
+import reset from "./media/reset-button.png"; // Pomodoro Image
+import next from "./media/next-button.png"; //
+import previous from "./media/previous-button.png";
 
 const App: React.FC = () => {
   return (
@@ -6,7 +16,7 @@ const App: React.FC = () => {
       <div className="row text-center">
         <div className="col-6 col-md-6 col-sm-12">
           <img
-            src="/assets/drink.png"
+            src={drink}
             alt="drink"
             className="floating-img"
             width="500"
@@ -14,7 +24,7 @@ const App: React.FC = () => {
         </div>
         <div className="col-6 col-md-6 col-sm-12 pomodoro">
           <div className="row">
-            <img src="/assets/focus-time!.png" alt="focus time!" />
+            <img src={currentImage} alt="focus time!" />
           </div>
           <div className="row">
             <h2>30:00</h2>
@@ -24,7 +34,7 @@ const App: React.FC = () => {
             <div className="col-lg-2 col-sm-3">
               <a href="#">
                 <img
-                  src="/assets/play-button.png"
+                  src={play}
                   alt="play button"
                   width="50"
                 />
@@ -33,7 +43,7 @@ const App: React.FC = () => {
             <div className="col-lg-2 col-sm-3">
               <a href="#">
                 <img
-                  src="/assets/reset-button.png"
+                  src={reset}
                   alt="reset button"
                   width="50"
                 />
@@ -44,12 +54,20 @@ const App: React.FC = () => {
           <div className="row pt-5 buttonsControl ">
             <div className="col-lg-3 col-sm-3"></div>
             <div className="col-lg-3 col-sm-3">
-              <button type="button" className="btn btn-outline-secondary">
+              <button
+                className={`btn btn-outline-secondary ${
+                  currentImage === pomodoroImg ? "active" : ""
+                }`}
+                onClick={() => setCurrentImage(pomodoroImg)}
+              >
                 Pomodoro
               </button>
             </div>
             <div className="col-lg-3 col-sm-3">
-              <button type="button" className="btn btn-outline-secondary">
+              <button className={`btn btn-outline-secondary ${
+                  currentImage === breakImg ? "active" : ""
+                }`}
+                onClick={() => setCurrentImage(breakImg)}>
                 Break
               </button>
             </div>
@@ -62,7 +80,7 @@ const App: React.FC = () => {
           <div className="col-2 text-center ">
             <a href="#">
               <img
-                src="/assets/spotify-logo.png"
+                src={spotifyLogo}
                 alt="spotify-logo"
                 width="60"
               />
@@ -81,7 +99,7 @@ const App: React.FC = () => {
               <div className="col-4">
                 <a href="#">
                   <img
-                    src="/assets/previous-button.png"
+                    src={previous}
                     alt="previous button"
                     width="30"
                   />
@@ -90,7 +108,7 @@ const App: React.FC = () => {
               <div className="col-3">
                 <a href="#">
                   <img
-                    src="/assets/play-button.png"
+                    src={play}
                     alt="play button"
                     width="30"
                   />
@@ -99,7 +117,7 @@ const App: React.FC = () => {
               <div className="col-4">
                 <a href="#">
                   <img
-                    src="/assets/next-button.png"
+                    src={next}
                     alt="next button"
                     width="30"
                   />
