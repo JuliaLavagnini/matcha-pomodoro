@@ -1,14 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&display=swap");
+:root {
+  --main-font: "Radio Canada", sans-serif;
+  --timer-font: "Agbalumo", system-ui;
+  --primary-color: #44624a;
+  --secondary-color: #f1ebe1;
+}
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  background-color: #8ba888;
+  color: #212121;
+  font-family: var(--main-font);
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--timer-font);
+  color: var(--secondary-color);
+  font-size: 120px;
+  font-weight: 400;
+  line-height: 108%;
+  letter-spacing: 1.5px;
+  text-shadow: 13px 13px 4px rgba(0, 0, 0, 0.25);
+}
+
+h3 {
+  font-size: 32px;
+  margin-bottom: 0px;
+}
+
+h4 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0px);
   }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+  50% {
+    transform: translateY(-10px); /* Moves up */
   }
-  
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating-img {
+  animation: floatAnimation 3s linear infinite; /* Infinite loop */
+}
+
+.pomodoro .row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pomodoro button {
+  border-radius: 20px;
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  width: 90%;
+}
+
+.pomodoro .btn:hover,
+.btn:active {
+  background-color: var(--primary-color);
+}
+
+.spotifyPlay {
+  margin-top: 5%;
+  background-color: var(--secondary-color);
+  border-radius: 16px;
+  box-shadow: 7px 8px 5.6px 0px rgba(0, 0, 0, 0.25);
+  width: 700px;
+}
+
+.spotifyPlay .container {
+  margin: 0 auto;
+}
+
+.spotifyPlay .row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
