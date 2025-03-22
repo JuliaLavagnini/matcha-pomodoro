@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTimer } from "./hooks/useTimer";
 import pomodoroImg from "./media/focusImg.png"; // Pomodoro Image
 import breakImg from "./media/breakImg.png"; //
 import drink from "./media/drink.png";
@@ -12,15 +13,17 @@ import previous from "./media/previous-button.png";
 const App: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(pomodoroImg);
   const [isPomodoro, setIsPomodoro] = useState(true); // Tracks Pomodoro or Break mode
-  const [timerValue, setTimerValue] = useState(25);
+
+  const { time, startTimer, resetTimer, isRunning } = useTimer(25);
 
   useEffect(() => {
-    setCurrentImage(isPomodoro? pomodoroImg : breakImg)
+    setCurrentImage(isPomodoro ? pomodoroImg : breakImg);
   }, [isPomodoro]);
 
   const switchMode = () => {
-    setIsPomodoro((prev) => !prev);
-    setTimerValue((prev) => (isPomodoro ? 5 : 25));
+    const newMinutes = isPomodoro ? 5 : 25;
+    setIsPomodoro(!isPomodoro);
+    resetTimer(newMinutes);
   };
 
   return (
@@ -34,18 +37,23 @@ const App: React.FC = () => {
             <img src={currentImage} alt="focus time!" />
           </div>
           <div className="row">
-            <h2>{timerValue}</h2>
+            <h2>{time}</h2>
           </div>
           <div className="row pt-5 timerButtons">
             <div className="col-lg-4 col-sm-3"></div>
             <div className="col-lg-2 col-sm-3">
               <a href="#">
-                <img src={play} alt="play button" width="50" />
+                <img
+                  src={play}
+                  alt="play button"
+                  width="50"
+                  onClick={startTimer}
+                />
               </a>
             </div>
             <div className="col-lg-2 col-sm-3">
               <a href="#">
-                <img src={reset} alt="reset button" width="50" />
+                <img src={reset} alt="reset button" width="50" onClick={() => resetTimer(isPomodoro ? 25 : 5)} />
               </a>
             </div>
             <div className="col-lg-4 col-sm-3"></div>
@@ -59,7 +67,7 @@ const App: React.FC = () => {
                 }`}
                 onClick={() => {
                   setIsPomodoro(true);
-                  setTimerValue(25);
+                  resetTimer(25);
                 }}
               >
                 Pomodoro
@@ -72,7 +80,7 @@ const App: React.FC = () => {
                 }`}
                 onClick={() => {
                   setIsPomodoro(false);
-                  setTimerValue(5);
+                  resetTimer(5);
                 }}
               >
                 Break
