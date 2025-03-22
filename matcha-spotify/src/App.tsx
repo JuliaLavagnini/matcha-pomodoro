@@ -10,6 +10,7 @@ import reset from "./media/reset-button.png"; // Pomodoro Image
 import next from "./media/next-button.png"; //
 import previous from "./media/previous-button.png";
 
+
 const App: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(pomodoroImg);
   const [isPomodoro, setIsPomodoro] = useState(true); // Tracks Pomodoro or Break mode
@@ -76,7 +77,7 @@ const App: React.FC = () => {
             <div className="col-lg-3 col-sm-3">
               <button
                 className={`btn btn-outline-secondary ${
-                  isPomodoro ? "active" : ""
+                  !isPomodoro ? "active" : ""
                 }`}
                 onClick={() => {
                   setIsPomodoro(false);

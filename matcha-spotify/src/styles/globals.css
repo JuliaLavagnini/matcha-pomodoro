@@ -67,7 +67,7 @@ h4 {
 }
 
 .pomodoro .btn:hover,
-.btn:active {
+.btn.active {
   background-color: var(--primary-color);
 }
 
