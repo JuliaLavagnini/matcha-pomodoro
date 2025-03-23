@@ -3,12 +3,9 @@ import { useTimer } from "./hooks/useTimer";
 import pomodoroImg from "./media/focusImg.png"; // Pomodoro Image
 import breakImg from "./media/breakImg.png"; //
 import drink from "./media/drink.png";
-import spotifyLogo from "./media/spotify-logo.png"; // Pomodoro Image
 import play from "./media/play-button.png"; //
-import pause from "./media/pause-button.png";
 import reset from "./media/reset-button.png"; // Pomodoro Image
-import next from "./media/next-button.png"; //
-import previous from "./media/previous-button.png";
+
 
 
 const App: React.FC = () => {
@@ -88,42 +85,6 @@ const App: React.FC = () => {
               </button>
             </div>
             <div className="col-lg-3 col-sm-3"></div>
-          </div>
-        </div>
-      </div>
-      <div className="container spotifyPlay">
-        <div className="row">
-          <div className="col-2 text-center ">
-            <a href="#">
-              <img src={spotifyLogo} alt="spotify-logo" width="60" />
-            </a>
-          </div>
-          <div className="col-6">
-            <div className="row">
-              <h3>Sweet Dream</h3>
-            </div>
-            <div className="row">
-              <h4>j-hope, Miguel</h4>
-            </div>
-          </div>
-          <div className="col-4 pe-3 musicPlay text-center">
-            <div className="row">
-              <div className="col-4">
-                <a href="#">
-                  <img src={previous} alt="previous button" width="30" />
-                </a>
-              </div>
-              <div className="col-3">
-                <a href="#">
-                  <img src={play} alt="play button" width="30" />
-                </a>
-              </div>
-              <div className="col-4">
-                <a href="#">
-                  <img src={next} alt="next button" width="30" />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
