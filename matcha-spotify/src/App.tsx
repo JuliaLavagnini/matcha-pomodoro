@@ -1,18 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useTimer } from "./hooks/useTimer";
-import pomodoroImg from "./media/focusImg.png"; // Pomodoro Image
-import breakImg from "./media/breakImg.png"; //
+import pomodoroImg from "./media/focusImg.png";
+import breakImg from "./media/breakImg.png";
 import drink from "./media/drink.png";
-import play from "./media/play-button.png"; //
-import reset from "./media/reset-button.png"; // Pomodoro Image
-
-
+import play from "./media/play-button.png";
+import reset from "./media/reset-button.png";
+import plus from "./media/plus.png";
+import minus from "./media/minus.png";
 
 const App: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(pomodoroImg);
-  const [isPomodoro, setIsPomodoro] = useState(true); // Tracks Pomodoro or Break mode
+  const [isPomodoro, setIsPomodoro] = useState(true);
+  const [timerValue, setTimerValue] = useState(25);
 
-  const { time, startTimer, resetTimer, isRunning } = useTimer(25);
+  const handleIncrease = () => {
+    const max = isPomodoro ? 40 : 15;
+    const step = 5;
+    if (timerValue < max) {
+      const newValue = timerValue + step;
+      setTimerValue(newValue);
+      resetTimer(newValue);
+    }
+  };
+
+  const handleDecrease = () => {
+    const min = isPomodoro ? 25 : 5;
+    const step = 5;
+    if (timerValue > min) {
+      const newValue = timerValue - step;
+      setTimerValue(newValue);
+      resetTimer(newValue);
+    }
+  };
+
+  const { time, startTimer, resetTimer, isRunning } = useTimer(timerValue);
 
   useEffect(() => {
     setCurrentImage(isPomodoro ? pomodoroImg : breakImg);
@@ -34,6 +55,36 @@ const App: React.FC = () => {
           <div className="row">
             <img src={currentImage} alt="focus time!" />
           </div>
+          <div className="row pt-1 controls">
+            <div className="col-lg-4 col-sm-3"></div>
+            <div className="col-lg-2 col-sm-3">
+              <a href="#">
+                <img
+                  src={plus}
+                  alt="plus button"
+                  width="50"
+                  className={`icon ${isRunning ? "disabled" : ""}`}
+                  onClick={() => {
+                    if (!isRunning) handleIncrease();
+                  }}
+                />
+              </a>
+            </div>
+            <div className="col-lg-2 col-sm-3">
+              <a href="#">
+                <img
+                  src={minus}
+                  alt="minus button"
+                  width="50"
+                  className={`icon ${isRunning ? "disabled" : ""}`}
+                  onClick={() => {
+                    if (!isRunning) handleDecrease();
+                  }}
+                />
+              </a>
+            </div>
+            <div className="col-lg-4 col-sm-3"></div>
+          </div>
           <div className="row">
             <h2>{time}</h2>
           </div>
@@ -51,12 +102,17 @@ const App: React.FC = () => {
             </div>
             <div className="col-lg-2 col-sm-3">
               <a href="#">
-                <img src={reset} alt="reset button" width="50" onClick={() => resetTimer(isPomodoro ? 25 : 5)} />
+                <img
+                  src={reset}
+                  alt="reset button"
+                  width="50"
+                  onClick={() => resetTimer(isPomodoro ? 25 : 5)}
+                />
               </a>
             </div>
             <div className="col-lg-4 col-sm-3"></div>
           </div>
-          <div className="row pt-5 buttonsControl ">
+          <div className="row pt-5 modeButtons ">
             <div className="col-lg-3 col-sm-3"></div>
             <div className="col-lg-3 col-sm-3">
               <button
@@ -65,6 +121,7 @@ const App: React.FC = () => {
                 }`}
                 onClick={() => {
                   setIsPomodoro(true);
+                  setTimerValue(25);
                   resetTimer(25);
                 }}
               >
@@ -78,6 +135,7 @@ const App: React.FC = () => {
                 }`}
                 onClick={() => {
                   setIsPomodoro(false);
+                  setTimerValue(5);
                   resetTimer(5);
                 }}
               >
